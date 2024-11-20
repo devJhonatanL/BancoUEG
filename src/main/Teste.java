@@ -16,8 +16,6 @@ public class Teste {
 
         sistemaDeAutenticacao.login();
 
-        while (funcionamento) {
-
             switch (SistemaDeAutenticacao.getNivelAcesso()) {
                 case "admin":
                     AdminFull admFull2 = new AdminFull(SistemaDeAutenticacao.getUsuario(), SistemaDeAutenticacao.getSenha());
@@ -27,11 +25,6 @@ public class Teste {
                     Gerente gerente = new Gerente(SistemaDeAutenticacao.getUsuario(), SistemaDeAutenticacao.getSenha());
                     gerente.menuGerente();
                     break;
-                default:
-                    System.out.println("Acesso não reconhecido.");
-                    funcionamento = false;
-
             }
-        }
     }
 }

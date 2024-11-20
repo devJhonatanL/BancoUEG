@@ -39,7 +39,7 @@ public class EscritorLeitor {
                             + usuario.getNivelacesso() + "\n");
                 }
             }
-            System.out.println(" *Informações registradas com sucesso.* ");
+           // System.out.println(" *Informações registradas com sucesso.* ");
         } catch (IOException e) {
             System.out.println(" *Erro ao registrar as informações. Tente novamente!* ");
         }

@@ -1,5 +1,7 @@
 package usuariosistema;
 import sistema.EscritorLeitor;
+import sistema.SistemaDeAutenticacao;
+
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -28,6 +30,7 @@ public class Gerente extends Usuario {
 
         Bancario novoBancario = new Bancario(usuario, senha);
         EscritorLeitor.adicionarUsuario(novoBancario);
+        System.out.println("Usuario criado com sucesso");
 
     }
     //CRIA O CORRENTISTA
@@ -76,6 +79,8 @@ public class Gerente extends Usuario {
 
         Correntista novoCorrentista = new Correntista(usuario, senha, contaCorrente, contaPoupanca);
         EscritorLeitor.adicionarUsuario(novoCorrentista);
+        System.out.println(novoCorrentista.toString());
+        System.out.println("Usuario criado com sucesso");
 
     }
 
@@ -98,6 +103,13 @@ public class Gerente extends Usuario {
                 break;
             case 2:
                 criarCorrentista();
+                break;
+            case 3:
+                SistemaDeAutenticacao voltar = new SistemaDeAutenticacao();
+                voltar.login();
+                break;
+            case 4:
+                System.out.println("Sistema finalizado com sucesso");
                 break;
         }
     }

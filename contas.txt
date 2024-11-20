@@ -1,0 +1,4 @@
+Saldo,Titular,NumeroConta,Senha,TipoConta,ChequeEspecial
+800.0,Keyde,09132,1234,corrente,700.0
+500.0,Luis,0923,1234,poupanca
+1000.0,Keyde,0932,1234,adicional,1000.0

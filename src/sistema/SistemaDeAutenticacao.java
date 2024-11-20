@@ -32,6 +32,15 @@ public class SistemaDeAutenticacao {
             this.nivelAcesso = usuarioEncontrado.getNivelacesso();
         }
 
+
+
+
+
+
+
+
+
+
     }
     public static String getUsuario() {
         return usuario;

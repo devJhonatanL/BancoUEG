@@ -25,6 +25,8 @@ public class Teste {
                     Gerente gerente = new Gerente(SistemaDeAutenticacao.getUsuario(), SistemaDeAutenticacao.getSenha());
                     gerente.menuGerente();
                     break;
+
+
             }
     }
 }

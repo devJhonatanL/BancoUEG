@@ -30,9 +30,9 @@ public class SistemaDeAutenticacao {
             this.usuario = usuarioEncontrado.getUsuario();
             this.senha = usuarioEncontrado.getSenha();
             this.nivelAcesso = usuarioEncontrado.getNivelacesso();
+
+
         }
-
-
 
 
 

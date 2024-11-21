@@ -26,16 +26,18 @@ public class EscritorLeitor {
         usuarios.put(usuario.getUsuario(),usuario);
         registrarUsuario(usuarios);
     }
+
     public static void adicionarContas(Conta conta) throws IOException {
         contas.put(conta.getNumeroConta(), conta);
         registrarContas(contas);
     }
     // REGISTRA O USUARIO NO ARQUIVO DE TEXTO
+
     private static void registrarUsuario(Map<String, Usuario> usuarios) {
 
 
         try (BufferedWriter registrador = new BufferedWriter(new FileWriter(arquivo))) {
-            registrador.write("Usuario,Nome,Senha,ContaCorrente,ContaPoupanca,ContaAdicional\n");
+            registrador.write("Usuario,Senha,ContaCorrente,ContaPoupanca,ContaAdicional\n");
 
             for (Map.Entry<String, Usuario> entrada : usuarios.entrySet()) {
                 Usuario usuario = entrada.getValue();
@@ -43,7 +45,7 @@ public class EscritorLeitor {
                 if (usuario instanceof Correntista correntista) {
                     registrador.write(correntista.getUsuario() + "," + correntista.getSenha() + ","
                             + correntista.getNivelacesso() + "," + correntista.getContaCorrente()
-                            + "," + correntista.getContaPoupança() + "\n");
+                            + "," + correntista.getContaPoupança() + "," + correntista.getContaCorrenteAdicional() + "\n");
                 } else {
                     registrador.write(usuario.getUsuario() + "," + usuario.getSenha() + ","
                             + usuario.getNivelacesso() + "\n");
@@ -54,6 +56,7 @@ public class EscritorLeitor {
             System.out.println(" *Erro ao registrar as informações. Tente novamente!* ");
         }
     }
+
     private static void registrarContas(Map<String, Conta> contas) {
 
 
@@ -96,12 +99,12 @@ public class EscritorLeitor {
                 String senha = dados[1];
                 String nivelUsuario = dados[2];
 
-                if (nivelUsuario.equals("correntista") && dados.length >= 5) {
+                if (nivelUsuario.equals("correntista") && dados.length >= 6) {
                     String numContaCorrente = dados[3];
                     String numContaPoupanca = dados[4];
-                    //String numContaAdicional = dados[5];
+                    String numContaAdicional = dados[5];
 
-                    Correntista correntista = new Correntista(usuario, senha, numContaCorrente, numContaPoupanca);
+                    Correntista correntista = new Correntista(usuario, senha, numContaCorrente, numContaPoupanca, numContaAdicional);
                     adicionarUsuario(correntista);
                 } else {
                     switch (nivelUsuario) {

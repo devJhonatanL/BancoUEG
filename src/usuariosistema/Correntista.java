@@ -5,12 +5,12 @@ public class Correntista extends Usuario {
     private String contaPoupança;
     private String contaCorrenteAdicional;
 
-    public Correntista(String usuario, String senha, String contaCorrente, String contaPoupança) {
+    public Correntista(String usuario, String senha, String contaCorrente, String contaPoupança, String contaCorrenteAdicional) {
         super(usuario, senha, "correntista");
 
         this.contaCorrente = contaCorrente;
         this.contaPoupança = contaPoupança;
-        this.contaCorrenteAdicional = "0";
+        this.contaCorrenteAdicional = contaCorrenteAdicional;
 
     }
 
@@ -29,7 +29,7 @@ public class Correntista extends Usuario {
     @Override
     public String toString() {
         return "Usuário: " + this.getUsuario() + " - " + this.getSenha() + " [" + this.getNivelacesso() + "]"
-                + " Corrente:" + this.contaCorrente + " Poupança:" + this.contaPoupança;
+                + " Corrente:" + this.contaCorrente + " Poupança:" + this.contaPoupança + " Corrente Adicional:" + this.contaCorrenteAdicional;
     }
 }
 

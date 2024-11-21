@@ -1,13 +1,11 @@
-Usuario,Nome,Senha,ContaCorrente,ContaPoupanca,ContaAdicional
-luis,12345,correntista,3333,0
-zezin,1234,correntista,0009,0
+Usuario,Senha,ContaCorrente,ContaPoupanca,ContaAdicional
+enzo,1234,correntista,8723C,0,8723CA
 teste134,123556,gerente
-lucas,12345,correntista,0,3932
-pedro,1234,correntista,0001,0
+rodorfo,1234,correntista,09991C,0,09991CA
 teste1,12354,bancario
 admin,1234,admin
 kuki,1234,bancario
 pid,1234,gerente
-maria,1234,correntista,3333,0
+ze,1234,correntista,9990C,0,9990CA
 testesuper,12354,gerente
 abner,1234,gerente

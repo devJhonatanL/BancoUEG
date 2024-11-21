@@ -40,6 +40,7 @@ public class Gerente extends Usuario {
 
         String contaCorrente = "0";
         String contaPoupanca = "0";
+        String contaAdicional = "0";
 
         System.out.println("Digite o usuario: ");
         String usuario = input.nextLine();
@@ -66,23 +67,97 @@ public class Gerente extends Usuario {
         switch (opcao) {
             case 1:
                 System.out.println("Digite o número da conta:");
-                contaCorrente = input.nextLine();
+                contaCorrente = input.nextLine() +"C";
+
+                System.out.println("""
+                Deseja uma conta corrente adicional:
+                [1] Sim
+                [2] Não
+                """);
+                String aceitarConta = input.nextLine();
+                    switch (aceitarConta) {
+                        case "1":
+                            contaAdicional = contaCorrente+"A";
+                            break;
+                        case "2":
+                            contaAdicional = "0";
+                    }
                 break;
             case 2:
                 System.out.println("Digite o número da conta:");
-                contaPoupanca = input.nextLine();
+                contaPoupanca = input.nextLine()+"P";
                 break;
             default:
                 System.out.println("Digite uma opção válida");
 
         }
 
-        Correntista novoCorrentista = new Correntista(usuario, senha, contaCorrente, contaPoupanca);
+        Correntista novoCorrentista = new Correntista(usuario, senha, contaCorrente, contaPoupanca, contaAdicional);
         EscritorLeitor.adicionarUsuario(novoCorrentista);
         System.out.println(novoCorrentista.toString());
         System.out.println("Usuario criado com sucesso");
 
     }
+
+    private void adicionarNovaConta() throws IOException {
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Digite o nome do usuario que você deseja adicionar uma conta: ");
+        String usuario = input.nextLine();
+
+        Usuario usuarioEncontrado = EscritorLeitor.getUsuarios().get(usuario);
+        if (usuarioEncontrado == null) {
+            System.out.println("usuario não encontrado");
+            return;
+        }
+        if (!usuarioEncontrado.getNivelacesso().equals("correntista")){
+            System.out.println("Esse usuario não é um correntista");
+            return;
+        }
+        Correntista correntista = (Correntista) usuarioEncontrado;
+        System.out.println("""
+                Digite o tipo de conta:
+                [1] Corrente
+                [2] Poupança
+                [3] Adicional
+                """);
+
+        int opcao = input.nextInt();
+        input.nextLine();
+        switch (opcao) {
+            case 1:
+                if(correntista.getContaCorrente().equals("0")){
+                    //criar conta corrente
+                }else{
+                    System.out.println("Correntista ja possui uma conta corrente");
+                }
+                break;
+            case 2:
+                if(correntista.getContaPoupança().equals("0")){
+                    //criar conta poupança
+                }else {
+                    System.out.println("Correntista ja possui uma conta poupança");
+                }
+                break;
+            case 3:
+                if(!correntista.getContaCorrente().equals("0")) {
+                    //verificação se existe conta corrente
+                    if(correntista.getContaCorrenteAdicional().equals("0")){
+                        //criar conta adicional
+                    }else {
+                        System.out.println("Correntista ja possui uma conta adicional");
+                    }
+                }else {
+                    System.out.println("Correntista não possui uma conta corrente");
+                }
+
+        }
+    }
+
+
+
+
+
 
     public  void menuGerente() throws IOException {
         Scanner input = new Scanner(System.in);

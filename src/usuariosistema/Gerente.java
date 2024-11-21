@@ -1,4 +1,6 @@
 package usuariosistema;
+import contasusuarios.ContaCorrente;
+import contasusuarios.ContaPoupanca;
 import sistema.EscritorLeitor;
 import sistema.SistemaDeAutenticacao;
 
@@ -33,14 +35,74 @@ public class Gerente extends Usuario {
         System.out.println("Usuario criado com sucesso");
 
     }
+    public void criarContaCorrente(Correntista correntista) throws IOException {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Digite o número da conta:");
+        String contaCorrente = input.nextLine() + "C";
+
+        System.out.println("Qual valor do saldo inicial:");
+        double saldo = input.nextDouble();
+        input.nextLine();
+
+        ContaCorrente corrente = new ContaCorrente(saldo, correntista.getUsuario(), contaCorrente, correntista.getSenha());
+
+
+        System.out.println("""
+                Deseja utilizar cheque especial:
+                [1] Sim
+                [2] Não
+                """);
+        String aceitarCheque = input.nextLine();
+        String contaAdicional = contaCorrente + "A";
+        switch (aceitarCheque) {
+            case "1":
+                System.out.println("Digite o valor do Cheque Especial");
+                double valor = input.nextDouble();
+                correntista.setContaCorrente(contaCorrente);
+                corrente.setChequeEspecial(valor);
+                EscritorLeitor.adicionarUsuario(correntista);
+                EscritorLeitor.adicionarContas(corrente);
+                break;
+            case "2":
+                correntista.setContaCorrente(contaCorrente);
+                EscritorLeitor.adicionarUsuario(correntista);
+                EscritorLeitor.adicionarContas(corrente);
+                break;
+
+        }
+    }
+    public void criarContaPoupanca(Correntista correntista) throws IOException {
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Digite o numero do conta:");
+        String contaPoupanca = input.nextLine()+"P";
+
+        System.out.println("Qual valor do saldo inicial:");
+        double saldo = input.nextDouble();
+        input.nextLine();
+
+        ContaPoupanca poupanca = new ContaPoupanca(saldo, correntista.getUsuario(), contaPoupanca, correntista.getSenha());
+
+        correntista.setContaPoupança(contaPoupanca);
+        EscritorLeitor.adicionarUsuario(correntista);
+        EscritorLeitor.adicionarContas(poupanca);
+
+    }
+    public void criarContaAdicional(Correntista correntista) throws IOException {
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Digite o nome do conta:");
+        String contaAdicional = input.nextLine();
+
+    }
+
+
+
+
     //CRIA O CORRENTISTA
     public void criarCorrentista() throws IOException {
 
         Scanner input = new Scanner(System.in);
-
-        String contaCorrente = "0";
-        String contaPoupanca = "0";
-        String contaAdicional = "0";
 
         System.out.println("Digite o usuario: ");
         String usuario = input.nextLine();
@@ -63,38 +125,23 @@ public class Gerente extends Usuario {
 
         int opcao = input.nextInt();
         input.nextLine();
+        Correntista novoCorrentista = new Correntista(usuario, senha);
 
         switch (opcao) {
             case 1:
-                System.out.println("Digite o número da conta:");
-                contaCorrente = input.nextLine() +"C";
-
-                System.out.println("""
-                Deseja uma conta corrente adicional:
-                [1] Sim
-                [2] Não
-                """);
-                String aceitarConta = input.nextLine();
-                    switch (aceitarConta) {
-                        case "1":
-                            contaAdicional = contaCorrente+"A";
-                            break;
-                        case "2":
-                            contaAdicional = "0";
-                    }
+                criarContaCorrente(novoCorrentista);
                 break;
             case 2:
-                System.out.println("Digite o número da conta:");
-                contaPoupanca = input.nextLine()+"P";
+                criarContaPoupanca(novoCorrentista);
                 break;
             default:
                 System.out.println("Digite uma opção válida");
 
         }
 
-        Correntista novoCorrentista = new Correntista(usuario, senha, contaCorrente, contaPoupanca, contaAdicional);
-        EscritorLeitor.adicionarUsuario(novoCorrentista);
-        System.out.println(novoCorrentista.toString());
+
+        //EscritorLeitor.adicionarUsuario(novoCorrentista);
+        System.out.println(novoCorrentista);
         System.out.println("Usuario criado com sucesso");
 
     }
@@ -126,23 +173,23 @@ public class Gerente extends Usuario {
         input.nextLine();
         switch (opcao) {
             case 1:
-                if(correntista.getContaCorrente().equals("0")){
-                    //criar conta corrente
+                if(correntista.getContaCorrente().equals("null")){
+                    criarContaCorrente(correntista);
                 }else{
                     System.out.println("Correntista ja possui uma conta corrente");
                 }
                 break;
             case 2:
-                if(correntista.getContaPoupança().equals("0")){
-                    //criar conta poupança
+                if(correntista.getContaPoupança().equals("null")){
+                    criarContaPoupanca(correntista);
                 }else {
                     System.out.println("Correntista ja possui uma conta poupança");
                 }
                 break;
             case 3:
-                if(!correntista.getContaCorrente().equals("0")) {
+                if(!correntista.getContaCorrente().equals("null")) {
                     //verificação se existe conta corrente
-                    if(correntista.getContaCorrenteAdicional().equals("0")){
+                    if(correntista.getContaCorrenteAdicional().equals("null")){
                         //criar conta adicional
                     }else {
                         System.out.println("Correntista ja possui uma conta adicional");
@@ -180,8 +227,7 @@ public class Gerente extends Usuario {
                 criarCorrentista();
                 break;
             case 3:
-                SistemaDeAutenticacao voltar = new SistemaDeAutenticacao();
-                voltar.login();
+                adicionarNovaConta();
                 break;
             case 4:
                 System.out.println("Sistema finalizado com sucesso");

@@ -5,13 +5,22 @@ public class Correntista extends Usuario {
     private String contaPoupança;
     private String contaCorrenteAdicional;
 
-    public Correntista(String usuario, String senha, String contaCorrente, String contaPoupança, String contaCorrenteAdicional) {
+    public Correntista(String usuario, String senha) {
         super(usuario, senha, "correntista");
 
-        this.contaCorrente = contaCorrente;
-        this.contaPoupança = contaPoupança;
-        this.contaCorrenteAdicional = contaCorrenteAdicional;
 
+    }
+
+    public void setContaCorrenteAdicional(String contaCorrenteAdicional) {
+        this.contaCorrenteAdicional = contaCorrenteAdicional;
+    }
+
+    public void setContaPoupança(String contaPoupança) {
+        this.contaPoupança = contaPoupança;
+    }
+
+    public void setContaCorrente(String contaCorrente) {
+        this.contaCorrente = contaCorrente;
     }
 
     public String getContaCorrente() {

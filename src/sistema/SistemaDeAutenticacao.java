@@ -11,34 +11,35 @@ public class SistemaDeAutenticacao {
     public void login() {
 
         Scanner input = new Scanner(System.in);
+        boolean autenticado = false;
 
-        System.out.println("Digite o nome do usuario: ");
-        String usuario = input.nextLine();
-        Usuario usuarioEncontrado = EscritorLeitor.getUsuarios().get(usuario);
-        if (usuarioEncontrado == null) {
+
+        do {
+            System.out.println("Digite o nome do usuario: ");
+            String usuario = input.nextLine();
+            Usuario usuarioEncontrado = EscritorLeitor.getUsuarios().get(usuario);
+
+            if (usuarioEncontrado == null) {
             System.out.println("Usuario não encontrado! ");
-            login();
-
-        }
-        System.out.println("Digite o senha do usuario:");
-        String senha = input.nextLine();
-        if (!usuarioEncontrado.getSenha().equals(senha)) {
+            continue;
+            }
+            System.out.println("Digite o senha do usuario:");
+            String senha = input.nextLine();
+            if (!usuarioEncontrado.getSenha().equals(senha)) {
             System.out.println("Senha incorreta");
-            login();
-        }else {
+        } else {
             System.out.println("Login efetuado com sucesso!");
             this.usuario = usuarioEncontrado.getUsuario();
             this.senha = usuarioEncontrado.getSenha();
             this.nivelAcesso = usuarioEncontrado.getNivelacesso();
+            autenticado = true;
+
 
 
         }
 
 
-
-
-
-
+    }while(autenticado == false);
 
 
     }

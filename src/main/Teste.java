@@ -11,6 +11,7 @@ public class Teste {
         boolean funcionamento = true;
 
         EscritorLeitor.carregarUsuarios();
+        EscritorLeitor.carregarContas();
 
         SistemaDeAutenticacao sistemaDeAutenticacao = new SistemaDeAutenticacao();
 

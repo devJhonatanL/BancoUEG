@@ -104,7 +104,10 @@ public class EscritorLeitor {
                     String numContaPoupanca = dados[4];
                     String numContaAdicional = dados[5];
 
-                    Correntista correntista = new Correntista(usuario, senha, numContaCorrente, numContaPoupanca, numContaAdicional);
+                    Correntista correntista = new Correntista(usuario, senha);
+                    correntista.setContaCorrente(numContaCorrente);
+                    correntista.setContaPoupança(numContaPoupanca);
+                    correntista.setContaCorrenteAdicional(numContaAdicional);
                     adicionarUsuario(correntista);
                 } else {
                     switch (nivelUsuario) {
@@ -134,14 +137,14 @@ public class EscritorLeitor {
             while ((linha = leitor.readLine()) != null) {
                 String[] dados = linha.split(",");
 
-                Double saldo = Double.valueOf(dados[0]);
+                Double saldo = Double.parseDouble(dados[0]);
                 String titular = dados[1];
                 String numeroConta = dados[2];
                 String senha = dados[3];
                 String tipoConta = dados[4];
 
                 if (tipoConta.equals("corrente") && dados.length >= 5) {
-                    Double chequeEspecial = Double.valueOf(dados[5]);
+                    Double chequeEspecial = Double.parseDouble(dados[5]);
                     ContaCorrente corrente = new ContaCorrente(saldo, titular, numeroConta, senha);
                     corrente.setChequeEspecial(chequeEspecial);
                     adicionarContas(corrente);

@@ -1,11 +1,4 @@
 Usuario,Senha,ContaCorrente,ContaPoupanca,ContaAdicional
-enzo,1234,correntista,8723C,0,8723CA
-teste134,123556,gerente
-rodorfo,1234,correntista,09991C,0,09991CA
-teste1,12354,bancario
+luis,1234,correntista,22C,22222P,null
 admin,1234,admin
-kuki,1234,bancario
-pid,1234,gerente
-ze,1234,correntista,9990C,0,9990CA
-testesuper,12354,gerente
 abner,1234,gerente

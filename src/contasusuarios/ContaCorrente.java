@@ -1,5 +1,9 @@
 package contasusuarios;
 
+import sistema.EscritorLeitor;
+
+import java.io.IOException;
+
 public class ContaCorrente extends Conta {
     private double chequeEspecial;
 
@@ -18,11 +22,13 @@ public class ContaCorrente extends Conta {
     }
 
     @Override
-    public void sacar(double valor) {
+    public void sacar(double valor) throws IOException {
         double saldo = getSaldo();
         if(valor>0 && valor< (saldo + chequeEspecial)) {
              saldo-=valor;
                 setSaldo(saldo);
+                Conta conta = EscritorLeitor.getContas().get(this.getNumeroConta());
+                EscritorLeitor.adicionarContas(conta);
                 System.out.println("Saque realizado.");
         } else {
             System.out.println("Saque invalido, verifique o saldo total e o valor solicitado");

@@ -1,4 +1,5 @@
 package usuariosistema;
+import contasusuarios.Conta;
 import contasusuarios.ContaAdicional;
 import contasusuarios.ContaCorrente;
 import contasusuarios.ContaPoupanca;
@@ -105,6 +106,36 @@ public class Gerente extends Usuario {
         adicional.setLimite(limite);
         EscritorLeitor.adicionarUsuario(correntista);
         EscritorLeitor.adicionarContas(adicional);
+    }
+
+    public void alterarLimite() throws IOException {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Digite o numero da conta");
+        String numeroConta = input.nextLine();
+        Conta contaEncontrada = EscritorLeitor.getContas().get(numeroConta);
+        if (contaEncontrada == null) {
+            System.out.println("conta não encontrado");
+            return;
+        }
+        if (!contaEncontrada.getTipoConta().equals("adicional")){
+            System.out.println("Essa conta nao e adicional");
+            return;
+        }
+        ContaAdicional contaAdicional = (ContaAdicional) contaEncontrada;
+
+        System.out.println("Informe o novo valor do limite:");
+        double limite = input.nextDouble();
+        input.nextLine();
+        if(limite > 0){
+            contaAdicional.setLimite(limite);
+            EscritorLeitor.adicionarContas(contaAdicional);
+            System.out.println("Limite atualizado com sucesso");
+        }else{
+            System.out.println("Valor invalido Tente Novamente");
+            alterarLimite();
+        }
+
+
     }
 
 
@@ -229,6 +260,7 @@ public class Gerente extends Usuario {
                 [2] Criar usuario correntista
                 [3] Adicionar conta ao correntista
                 [4] Configurar limite conta adicional
+                [5] Sair
                 """);
         opcao = input.nextInt();
         switch (opcao) {
@@ -242,6 +274,10 @@ public class Gerente extends Usuario {
                 adicionarNovaConta();
                 break;
             case 4:
+                alterarLimite();
+                break;
+
+            case 5:
                 System.out.println("Sistema finalizado com sucesso");
                 break;
         }

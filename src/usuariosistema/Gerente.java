@@ -1,4 +1,5 @@
 package usuariosistema;
+import contasusuarios.ContaAdicional;
 import contasusuarios.ContaCorrente;
 import contasusuarios.ContaPoupanca;
 import sistema.EscritorLeitor;
@@ -91,9 +92,19 @@ public class Gerente extends Usuario {
     public void criarContaAdicional(Correntista correntista) throws IOException {
         Scanner input = new Scanner(System.in);
 
-        System.out.println("Digite o nome do conta:");
-        String contaAdicional = input.nextLine();
+        double saldo = 0;
+        System.out.println("Digite o numero da conta:");
+        String contaAdicional = input.nextLine()+"AD";
 
+        System.out.println("Qual valor do limite :");
+        double limite = input.nextDouble();
+        input.nextLine();
+
+        ContaAdicional adicional =new ContaAdicional(saldo, correntista.getUsuario(), contaAdicional, correntista.getSenha());
+        correntista.setContaCorrenteAdicional(contaAdicional);
+        adicional.setLimite(limite);
+        EscritorLeitor.adicionarUsuario(correntista);
+        EscritorLeitor.adicionarContas(adicional);
     }
 
 
@@ -187,10 +198,11 @@ public class Gerente extends Usuario {
                 }
                 break;
             case 3:
+                //VERIFICA SE TEM UMA CONTA CORRENTE
                 if(!correntista.getContaCorrente().equals("null")) {
-                    //verificação se existe conta corrente
+                    //CRIA A CONTA ADICIONAL
                     if(correntista.getContaCorrenteAdicional().equals("null")){
-                        //criar conta adicional
+                        criarContaAdicional(correntista);
                     }else {
                         System.out.println("Correntista ja possui uma conta adicional");
                     }

@@ -61,7 +61,7 @@ public class EscritorLeitor {
 
 
         try (BufferedWriter registrador = new BufferedWriter(new FileWriter(arquivoContas))) {
-            registrador.write("Saldo,Titular,NumeroConta,Senha,TipoConta,ChequeEspecial\n");
+            registrador.write("Saldo,Titular,NumeroConta,Senha,TipoConta,ChequeEspecial/Limite\n");
 
             for (Map.Entry<String, Conta> entrada : contas.entrySet()) {
                 Conta conta = entrada.getValue();

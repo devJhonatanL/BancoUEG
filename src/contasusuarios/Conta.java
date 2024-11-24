@@ -1,5 +1,7 @@
 package contasusuarios;
 
+import java.io.IOException;
+
 public  abstract class Conta {
     private double saldo;
     private String titular;
@@ -39,9 +41,16 @@ public  abstract class Conta {
     public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
+    public void deposito(double valor) {
+        if (valor > 0) {
+            saldo += valor;
+            System.out.println("Depósito realizado com sucesso!");
+        } else {
+            System.out.println("Valor de depósito inválido.");
+        }
+    }
 
-
-    public abstract void sacar(double valor);
+    public abstract void sacar(double valor) throws IOException;
 
     @Override
     public String toString() {

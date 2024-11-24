@@ -10,7 +10,8 @@ import java.io.IOException;
 
 public class TesteContas {
     public static void main(String[] args) throws IOException {
-        EscritorLeitor.carregarContas();
-        System.out.println(EscritorLeitor.getContas());
+        ContaPoupanca teste = new ContaPoupanca(900.0,"zezin", "9999a","1234");
+        teste.calculoRedimentos(900.0,12);
+
     }
 }

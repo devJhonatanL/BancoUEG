@@ -1,4 +1,5 @@
 Usuario,Senha,ContaCorrente,ContaPoupanca,ContaAdicional
 luis,1234,correntista,22C,22222P,7973AD
 admin,1234,admin
+caio,1234,bancario
 abner,1234,gerente

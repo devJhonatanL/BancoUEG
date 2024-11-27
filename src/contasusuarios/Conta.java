@@ -1,9 +1,11 @@
 package contasusuarios;
 
+import sistema.EscritorLeitor;
+
 import java.io.IOException;
 
 public  abstract class Conta {
-    private double saldo;
+    private  double saldo;
     private String titular;
     private String numeroConta;
     private String senha;
@@ -18,7 +20,7 @@ public  abstract class Conta {
         this.tipoConta = tipoConta;
     }
 
-    public double getSaldo() {
+    public  double getSaldo() {
         return saldo;
     }
 
@@ -45,9 +47,20 @@ public  abstract class Conta {
 
     public abstract void sacar(double valor) throws IOException;
 
-    @Override
-    public String toString() {
-        return "Conta: " + this.getNumeroConta() + " - " + this.tipoConta + " [" + this.titular + "]" + " - " + this.saldo + " - " + this.senha;
+    public  void depositar(double valor) throws IOException {
+        double saldo = getSaldo();
+
+        if (valor > 0 ) {
+            saldo += valor;
+            setSaldo(saldo);
+            Conta conta = EscritorLeitor.getContas().get(this.getNumeroConta());
+            EscritorLeitor.adicionarContas(conta);
+            System.out.println("Depostio realizado.");
+        } else {
+            System.out.println("Deposio invalido, verifique o saldo total e o valor solicitado");
+        }
+
     }
+
 }
 

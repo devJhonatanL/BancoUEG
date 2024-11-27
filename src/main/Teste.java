@@ -26,7 +26,9 @@ public class Teste {
                     Gerente gerente = new Gerente(SistemaDeAutenticacao.getUsuario(), SistemaDeAutenticacao.getSenha());
                     gerente.menuGerente();
                     break;
-
+                case "bancario":
+                    Bancario bancario = new Bancario(SistemaDeAutenticacao.getUsuario(), SistemaDeAutenticacao.getSenha());
+                    bancario.menuBancario();
 
             }
     }

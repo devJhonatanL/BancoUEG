@@ -1,5 +1,14 @@
 package usuariosistema;
 
+import contasusuarios.Conta;
+import contasusuarios.ContaAdicional;
+import contasusuarios.ContaCorrente;
+import contasusuarios.ContaPoupanca;
+import sistema.EscritorLeitor;
+
+import java.io.IOException;
+import java.util.Scanner;
+
 public class Correntista extends Usuario {
     private String contaCorrente;
     private String contaPoupança;
@@ -35,10 +44,13 @@ public class Correntista extends Usuario {
         return contaCorrenteAdicional;
     }
 
-    @Override
-    public String toString() {
-        return "Usuário: " + this.getUsuario() + " - " + this.getSenha() + " [" + this.getNivelacesso() + "]"
-                + " Corrente:" + this.contaCorrente + " Poupança:" + this.contaPoupança + " Corrente Adicional:" + this.contaCorrenteAdicional;
+    
+
+
+
+    public void menuCorrentista() {
+
     }
 }
+
 

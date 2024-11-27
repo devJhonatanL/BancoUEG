@@ -12,8 +12,9 @@ public class ContaPoupanca extends Conta {
     }
 
     @Override
-    public void sacar(double valor) throws IOException {
+    public  void sacar(double valor) throws IOException {
         double saldo = getSaldo();
+
         if (valor > 0 && valor < saldo) {
             saldo -= valor;
             setSaldo(saldo);

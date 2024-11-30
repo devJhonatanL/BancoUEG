@@ -20,9 +20,9 @@ public class ContaPoupanca extends Conta {
             setSaldo(saldo);
             Conta conta = EscritorLeitor.getContas().get(this.getNumeroConta());
             EscritorLeitor.adicionarContas(conta);
-            System.out.println("Saque realizado.");
+            System.out.println("***.");
         } else {
-            System.out.println("Saque invalido, verifique o saldo total e o valor solicitado");
+            System.out.println("Erro, verifique o saldo total e o valor solicitado");
         }
 
     }

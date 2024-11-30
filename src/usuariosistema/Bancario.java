@@ -87,24 +87,28 @@ public class Bancario extends Usuario{
                 System.out.println("Conta inexistente");
                 return;
             }
+            if(contaRecEncontrada.getTipoConta() == "adicional"){
+                System.out.println("Essa conta não pode receber uma transferencia");
+                return;
+            }
             Conta conta = (Conta) contaRecEncontrada;
             switch (contaEncontrada.getTipoConta()) {
 
-
                 case "poupanca":
-                    ContaPoupanca contaPoupanca = (ContaPoupanca) contaEncontrada;
-                    contaPoupanca.sacar(valor);
-                    conta.depositar(valor);
+                    System.out.println("Conta poupança não tem autorização para fazer transferencia");
                     break;
                 case "corrente":
-                    ContaCorrente contaCorrente = (ContaCorrente) contaEncontrada;
-                    contaCorrente.sacar(valor);
-                    conta.depositar(valor);
+                    if(contaEncontrada.getSaldo()<valor) {
+                        System.out.println("Saldo insuficiente");
+                        return;
+                    }else {
+                        ContaCorrente contaCorrente = (ContaCorrente) contaEncontrada;
+                        contaCorrente.sacar(valor);
+                        conta.depositar(valor);
+                    }
                     break;
                 case "adicional":
-                    ContaAdicional contaAdicional = (ContaAdicional) contaEncontrada;
-                    contaAdicional.sacar(valor);
-                    conta.depositar(valor);
+                    System.out.println("Conta poupança não tem autorização para fazer transferencia");
                     break;
             }
 

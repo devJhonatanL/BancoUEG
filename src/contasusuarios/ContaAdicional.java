@@ -22,12 +22,12 @@ public class ContaAdicional extends Conta{
     public  void sacar(double valor) throws IOException {
             if(valor< limite) {
                 limite -=valor;
-                System.out.println("Saque realizado.");
+                System.out.println("***.");
                 setLimite(limite);
                 Conta conta = EscritorLeitor.getContas().get(this.getNumeroConta());
                 EscritorLeitor.adicionarContas(conta);
             } else {
-                System.out.println("Saque invalido, verifique o saldo total e o valor solicitado");
+                System.out.println("Erro, verifique o saldo total e o valor solicitado");
             }
 
         }

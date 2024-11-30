@@ -1,4 +1,5 @@
 Saldo,Titular,NumeroConta,Senha,TipoConta,ChequeEspecial/Limite
-1600.0,luis,22C,1234,corrente,77.0
+1900.0,luis,22C,1234,corrente,77.0
 80.0,luis,22222P,1234,poupanca
-75.0,luis,7973AD,1234,adicional,900.0
+0.0,luis,7973AD,1234,adicional,900.0
+100600.0,papis,333C,1234,corrente,0.0

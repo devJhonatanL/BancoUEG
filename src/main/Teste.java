@@ -29,6 +29,10 @@ public class Teste {
                 case "bancario":
                     Bancario bancario = new Bancario(SistemaDeAutenticacao.getUsuario(), SistemaDeAutenticacao.getSenha());
                     bancario.menuBancario();
+                    break;
+                case "correntista":
+                    Correntista correntista = new Correntista((SistemaDeAutenticacao.getUsuario()), SistemaDeAutenticacao.getSenha());
+                    correntista.menuCorrentista();
 
             }
     }

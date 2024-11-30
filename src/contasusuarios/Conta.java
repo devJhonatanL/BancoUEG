@@ -55,9 +55,9 @@ public  abstract class Conta {
             setSaldo(saldo);
             Conta conta = EscritorLeitor.getContas().get(this.getNumeroConta());
             EscritorLeitor.adicionarContas(conta);
-            System.out.println("Depostio realizado.");
+            System.out.println("**");
         } else {
-            System.out.println("Deposio invalido, verifique o saldo total e o valor solicitado");
+            System.out.println("Erro, verifique o saldo total e o valor solicitado");
         }
 
     }

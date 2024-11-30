@@ -5,6 +5,7 @@ import contasusuarios.ContaAdicional;
 import contasusuarios.ContaCorrente;
 import contasusuarios.ContaPoupanca;
 import sistema.EscritorLeitor;
+import usuariosistema.Correntista;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -38,7 +39,7 @@ public class TesteContas {
                 System.out.println("Valor invalido Tente Novamente");
 
             }*/
-        System.out.println("Digite o numero da conta");
+        /*System.out.println("Digite o numero da conta");
         String numeroConta = input.nextLine();
         Conta contaEncontrada = EscritorLeitor.getContas().get(numeroConta);
         if (contaEncontrada == null) {
@@ -60,7 +61,9 @@ public class TesteContas {
         } else {
             System.out.println("Valor invalido Tente Novamente");
 
-        }
+        }*/
+
+        System.out.println(EscritorLeitor.getUsuarios());
 
     }
 

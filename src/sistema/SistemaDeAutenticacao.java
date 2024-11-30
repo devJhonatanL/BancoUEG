@@ -33,24 +33,15 @@ public class SistemaDeAutenticacao {
             this.senha = usuarioEncontrado.getSenha();
             this.nivelAcesso = usuarioEncontrado.getNivelacesso();
             autenticado = true;
-
-
-
         }
-
-
-    }while(autenticado == false);
-
-
+        }while(autenticado == false);
     }
     public static String getUsuario() {
         return usuario;
     }
-
     public static String getSenha() {
         return senha;
     }
-
     public static String getNivelAcesso() {
         return nivelAcesso;
     }

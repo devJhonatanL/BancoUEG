@@ -37,7 +37,7 @@ public class EscritorLeitor {
 
 
         try (BufferedWriter registrador = new BufferedWriter(new FileWriter(arquivo))) {
-            registrador.write("Usuario,Senha,ContaCorrente,ContaPoupanca,ContaAdicional\n");
+
 
             for (Map.Entry<String, Usuario> entrada : usuarios.entrySet()) {
                 Usuario usuario = entrada.getValue();
@@ -51,7 +51,7 @@ public class EscritorLeitor {
                             + usuario.getNivelacesso() + "\n");
                 }
             }
-           // System.out.println(" *Informações registradas com sucesso.* ");
+
         } catch (IOException e) {
             System.out.println(" *Erro ao registrar as informações. Tente novamente!* ");
         }
@@ -61,7 +61,7 @@ public class EscritorLeitor {
 
 
         try (BufferedWriter registrador = new BufferedWriter(new FileWriter(arquivoContas))) {
-            registrador.write("Saldo,Titular,NumeroConta,Senha,TipoConta,ChequeEspecial/Limite\n");
+
 
             for (Map.Entry<String, Conta> entrada : contas.entrySet()) {
                 Conta conta = entrada.getValue();
@@ -73,7 +73,7 @@ public class EscritorLeitor {
                 } else if (conta instanceof ContaAdicional adicional) {
                     registrador.write(adicional.getSaldo() + "," + adicional.getTitular() + ","
                             + adicional.getNumeroConta() + "," + adicional.getSenha()
-                                + "," + adicional.getTipoConta() + "," + adicional.getLimite() + "\n");
+                            + "," + adicional.getTipoConta() + "," + adicional.getLimite() + "\n");
                 }else {
                     registrador.write(conta.getSaldo() + "," + conta.getTitular() + ","
                             + conta.getNumeroConta() + "," + conta.getSenha()
@@ -81,7 +81,6 @@ public class EscritorLeitor {
 
                 }
             }
-            // System.out.println(" *Informações registradas com sucesso.* ");
         } catch (IOException e) {
             System.out.println(" *Erro ao registrar as informações. Tente novamente!* ");
         }
@@ -91,7 +90,8 @@ public class EscritorLeitor {
     //CARREGA OS USUARIOS NO ARQUIVO DE TEXTO PARA A LISTA
     public static void carregarUsuarios() throws IOException {
         try (BufferedReader leitor = new BufferedReader(new FileReader(arquivo))) {
-            String linha = leitor.readLine();
+
+            String linha;
             while ((linha = leitor.readLine()) != null) {
                 String[] dados = linha.split(",");
 
@@ -105,6 +105,7 @@ public class EscritorLeitor {
                     String numContaAdicional = dados[5];
 
                     Correntista correntista = new Correntista(usuario, senha);
+
                     correntista.setContaCorrente(numContaCorrente);
                     correntista.setContaPoupança(numContaPoupanca);
                     correntista.setContaCorrenteAdicional(numContaAdicional);
@@ -133,18 +134,20 @@ public class EscritorLeitor {
 
     public static void carregarContas() throws IOException {
         try (BufferedReader leitor = new BufferedReader(new FileReader(arquivoContas))) {
-            String linha = leitor.readLine();
+
+
+            String linha;
             while ((linha = leitor.readLine()) != null) {
                 String[] dados = linha.split(",");
 
-                Double saldo = Double.parseDouble(dados[0]);
+                double saldo = Double.parseDouble(dados[0]);
                 String titular = dados[1];
                 String numeroConta = dados[2];
                 String senha = dados[3];
                 String tipoConta = dados[4];
 
                 if (tipoConta.equals("corrente") && dados.length >= 5) {
-                    Double chequeEspecial = Double.parseDouble(dados[5]);
+                    double chequeEspecial = Double.parseDouble(dados[5]);
                     ContaCorrente corrente = new ContaCorrente(saldo, titular, numeroConta, senha);
                     corrente.setChequeEspecial(chequeEspecial);
                     adicionarContas(corrente);
@@ -153,15 +156,12 @@ public class EscritorLeitor {
                     ContaAdicional adicional = new ContaAdicional(saldo, titular, numeroConta, senha);
                     adicional.setLimite(limite);
                     adicionarContas(adicional);
-                    } else{
+                } else{
                     ContaPoupanca poupanca = new ContaPoupanca(saldo, titular, numeroConta, senha);
                     adicionarContas(poupanca);
                 }
             }
-
         }
         System.out.println("Contas carregados com sucesso.");
     }
-
-
 }

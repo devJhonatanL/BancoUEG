@@ -11,27 +11,14 @@ public class Usuario {
         this.nivelacesso = nivelacesso;
         this.senha = senha;
         this.usuario = usuario;
-
     }
-
     public String getNivelacesso() {
         return nivelacesso;
     }
-    public String getNumeroConta() {
-        return numeroConta;
-    }
-
     public String getSenha() {
         return senha;
     }
-
     public String getUsuario() {
         return usuario;
     }
-
-    @Override
-    public String toString() {
-        return "Usuário: " + this.getUsuario() + " - " + this.senha + " [" + this.nivelacesso + "]";
-    }
-
 }

@@ -59,7 +59,11 @@ public class Correntista extends Usuario {
 
             System.out.println("Informe o numero da conta a ser usada:");
             contaEscolhida = input.nextLine();
-            Conta contaEncontrada = EscritorLeitor.getContas().get(contaEscolhida);
+            Conta contaEncontrada = EscritorLeitor.getContas().get(contaEscolhida.toUpperCase());
+            if (contaEncontrada == null) {
+                System.out.println("Conta nao encontrada.");
+                return;
+            }
 
             if (!contaEncontrada.getTitular().equals(donoConta)) {
                 System.out.println("Conta não vinculada ao usuario");

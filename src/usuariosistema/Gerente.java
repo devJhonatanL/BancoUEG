@@ -11,7 +11,7 @@ public class Gerente extends usuariosistema.Usuario {
     public Gerente(String usuario, String senha) {
         super(usuario, senha,"gerente");
     }
-    //CRIAR BANCARIO
+    //CRIAR O USUARIO DO BANCARIO BANCARIO
     public void criarBancario() throws IOException {
 
         Scanner input = new Scanner(System.in);
@@ -35,33 +35,38 @@ public class Gerente extends usuariosistema.Usuario {
         System.out.println("Usuario bancario foi registrado com sucesso.");
 
     }
-    //CRIAR CONTA CORRENTE
+
+    //CRIAR A CONTA CORRENTE
     public void criarContaCorrente(Correntista correntista) throws IOException {
         Scanner input = new Scanner(System.in);
         String contaCorrente;
         double saldo;
         int opcao;
 
+        System.out.println("\n==============================");
         System.out.println("Digite um numero para a conta:");
+        System.out.println("\n==============================");
         contaCorrente = input.nextLine() + "C";
 
-        System.out.println("Qual vai ser o valor do saldo inicial:");
+        System.out.println("\nQual vai ser o valor do saldo inicial:");
         saldo = input.nextDouble();
         input.nextLine();
 
         ContaCorrente corrente = new ContaCorrente(saldo, correntista.getUsuario(), contaCorrente, correntista.getSenha());
-        System.out.println("===========================");
-        System.out.println("+ Opção de chque especial +");
-        System.out.println("+ 1 - Incluir             +");
-        System.out.println("+ 2 - Não incluir         +");
-        System.out.println("===========================");
+        System.out.println("\n============================");
+        System.out.println("+ Opção de cheque especial +");
+        System.out.println("+ 1 - Incluir              +");
+        System.out.println("+ 2 - Não incluir          +");
+        System.out.println("\n============================");
 
         opcao = input.nextInt();
         input.nextLine();
         switch (opcao) {
             case 1:
                 double valor;
+                System.out.println("=========================");
                 System.out.println("Digite o valor desejado: ");
+                System.out.println("\n=========================");
                 valor = input.nextDouble();
                 correntista.setContaCorrente(contaCorrente);
                 corrente.setChequeEspecial(valor);
@@ -74,19 +79,22 @@ public class Gerente extends usuariosistema.Usuario {
                 EscritorLeitor.adicionarContas(corrente);
                 break;
             default:
-                System.out.println("Essa opção não existe, preste atenção no menu");
+                System.out.println("\nEssa opção não existe, preste atenção no menu\n");
         }
     }
-    //CRIAR CONTA POUPANÇA
+
+    //CRIAR A CONTA POUPANÇA
     public void criarContaPoupanca(Correntista correntista) throws IOException {
         Scanner input = new Scanner(System.in);
         String contaPoupanca;
         double saldo;
 
 
+        System.out.println("\n==============================");
         System.out.println("Digite um numero para a conta:");
+        System.out.println("\n==============================");
         contaPoupanca = input.nextLine()+"P";
-        System.out.println("Qual vai ser o valor do saldo inicial:");
+        System.out.println("\nQual vai ser o valor do saldo inicial:\n");
         saldo = input.nextDouble();
         input.nextLine();
 
@@ -97,7 +105,8 @@ public class Gerente extends usuariosistema.Usuario {
         EscritorLeitor.adicionarContas(poupanca);
 
     }
-    //CRIAR CONTA ADICIONAL
+
+    //CRIAR A CONTA ADICIONAL
     public void criarContaAdicional(Correntista correntista) throws IOException {
         Scanner input = new Scanner(System.in);
         String contaAdicional;
@@ -117,7 +126,8 @@ public class Gerente extends usuariosistema.Usuario {
         EscritorLeitor.adicionarUsuario(correntista);
         EscritorLeitor.adicionarContas(adicional);
     }
-    //ALTERADOR DE LIMITE
+
+    //ALTERADOR DE LIMITE DA CONTA ADICIONAL
     public void alterarLimite() throws IOException {
         Scanner input = new Scanner(System.in);
         String numeroConta;
@@ -149,7 +159,8 @@ public class Gerente extends usuariosistema.Usuario {
             alterarLimite();
         }
     }
-    //CRIA O CORRENTISTA
+
+    //CRIA O USUARIO DO CORRENTISTA - POR PADRÂO ELE TEM QUE IR COM UM TIPO DE CONTA, PODENDO SER CORRENTE OU POUPANÇA
     public void criarCorrentista() throws IOException {
 
         Scanner input = new Scanner(System.in);
@@ -193,7 +204,7 @@ public class Gerente extends usuariosistema.Usuario {
         System.out.println("Usuario correntista foi registrado  com sucesso");
     }
 
-    //ADICIONA UMA NOVA CONTA AO CORRENTISTA
+    //ADICIONA UMA NOVA CONTA AO CORRENTISTA - OBS: SO PODE ADICIONAR UMA CONTA DO TIPO ADICIONAL SE O CORRENTISTA TIVER UMA CONTA CORRENTE
     private void adicionarNovaConta() throws IOException {
         Scanner input = new Scanner(System.in);
 
@@ -251,7 +262,8 @@ public class Gerente extends usuariosistema.Usuario {
 
         }
     }
-    // MENU
+
+    // MENU DO GERENTE
     public  void menuGerente() throws IOException {
         Scanner input = new Scanner(System.in);
         int opcao;

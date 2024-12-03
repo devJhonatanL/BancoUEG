@@ -45,6 +45,9 @@ public class Correntista extends Usuario {
         return contaCorrenteAdicional;
     }
 
+
+
+    //MENU DO CORRENTISTA
     public void menuCorrentista() throws IOException {
         Scanner input = new Scanner(System.in);
         String contaEscolhida;

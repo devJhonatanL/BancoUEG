@@ -12,16 +12,16 @@ import java.util.Scanner;
 public class Bancario extends Usuario{
     public Bancario(String usuario, String senha) {
         super(usuario, senha, "bancario");
-
-
         }
+
+        //REALIZA DEPOSITO NA CONTA DO CORRENTISTA
         public void moviDeposito() throws IOException {
         double valor;
         String contaAlvo;
         Scanner input = new Scanner(System.in);
         System.out.println("Informe o numero da conta");
         contaAlvo = input.nextLine();
-        Conta contaEncontrada = EscritorLeitor.getContas().get(contaAlvo);
+        Conta contaEncontrada = EscritorLeitor.getContas().get(contaAlvo.toUpperCase());
         if (contaEncontrada == null) {
             System.out.println("Conta inexistente");
         }
@@ -31,14 +31,14 @@ public class Bancario extends Usuario{
 
         conta.depositar(valor);
         }
-
+        //SACA DA CONTA DO CORRENTISTA
         public void moviSaque() throws IOException {
             double valor;
             String contaAlvo;
             Scanner input = new Scanner(System.in);
             System.out.println("Informe o numero da conta");
             contaAlvo = input.nextLine();
-            Conta contaEncontrada = EscritorLeitor.getContas().get(contaAlvo);
+            Conta contaEncontrada = EscritorLeitor.getContas().get(contaAlvo.toUpperCase());
             if (contaEncontrada == null) {
                 System.out.println("Conta inexistente");
                 return;
@@ -62,6 +62,8 @@ public class Bancario extends Usuario{
 
 
         }
+        /*TRANSFERE DA CONTA DE UM CORRENTISTA PARA OUTRO CORRENSTISTA - OBS: SO DA PRA TRANSFERIR SE A CONTA QUE
+        VAI TRANSFERIR É CORRENTE E A QUE VAI RECEBER NÃO É DO TIPO ADICIONAL*/
 
         public void transferencia() throws IOException {
             double valor;
@@ -69,7 +71,7 @@ public class Bancario extends Usuario{
             Scanner input = new Scanner(System.in);
             System.out.println("Informe o numero da conta que vai transferir");
             contaAlvo = input.nextLine();
-            Conta contaEncontrada = EscritorLeitor.getContas().get(contaAlvo);
+            Conta contaEncontrada = EscritorLeitor.getContas().get(contaAlvo.toUpperCase());
             if (contaEncontrada == null) {
                 System.out.println("Conta inexistente");
                 return;
@@ -111,21 +113,22 @@ public class Bancario extends Usuario{
                     System.out.println("Conta poupança não tem autorização para fazer transferencia");
                     break;
             }
-
-
         }
+        //MENU DO BANCARIO
+
 
          public  void menuBancario() throws IOException {
         Scanner input = new Scanner(System.in);
         int opcao;
 
-        System.out.println("""
-                
-                Escolha uma função:
-                [1] Deposito
-                [2] Saque
-                [3] Trasnferencia
-                """);
+             System.out.println("===========================");
+             System.out.println("+         Operações       +");
+             System.out.println("+ 1 - Deposito            +");
+             System.out.println("+ 2 - Saque               +");
+             System.out.println("+ 3 - Trasnferencia       +");
+             System.out.println("+ 4 - Ver Rendimento      +");
+             System.out.println("===========================");
+
         opcao = input.nextInt();
         switch (opcao) {
             case 1:
@@ -141,5 +144,6 @@ public class Bancario extends Usuario{
                 break;
         }
     }
-    }
+
+}
 

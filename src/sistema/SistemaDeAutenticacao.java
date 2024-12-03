@@ -15,24 +15,34 @@ public class SistemaDeAutenticacao {
 
 
         do {
+
+            System.out.println("\n==========================");
+            System.out.println("=--       LOGIN        --=");
+            System.out.println("==========================");
             System.out.println("Digite o nome do usuario: ");
+            System.out.println("==========================");
             String usuario = input.nextLine();
             Usuario usuarioEncontrado = EscritorLeitor.getUsuarios().get(usuario);
 
             if (usuarioEncontrado == null) {
-            System.out.println("Usuario não encontrado! ");
+
+            System.out.println("\nUsuario não encontrado!");
             continue;
             }
+            System.out.println("\n==========================");
             System.out.println("Digite o senha do usuario:");
+            System.out.println("==========================");
             String senha = input.nextLine();
             if (!usuarioEncontrado.getSenha().equals(senha)) {
-            System.out.println("Senha incorreta");
+            System.out.println("\nSenha incorreta");
         } else {
-            System.out.println("Login efetuado com sucesso!");
-            this.usuario = usuarioEncontrado.getUsuario();
-            this.senha = usuarioEncontrado.getSenha();
-            this.nivelAcesso = usuarioEncontrado.getNivelacesso();
-            autenticado = true;
+                System.out.println("\n===========================");
+                System.out.println("Login efetuado com sucesso!");
+                System.out.println("===========================");
+                this.usuario = usuarioEncontrado.getUsuario();
+                this.senha = usuarioEncontrado.getSenha();
+                this.nivelAcesso = usuarioEncontrado.getNivelacesso();
+                autenticado = true;
         }
         }while(autenticado == false);
     }

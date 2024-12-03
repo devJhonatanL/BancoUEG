@@ -44,9 +44,10 @@ public  abstract class Conta {
         this.saldo = saldo;
     }
 
-
+    //SACAR É ABSTRATO E CADA CLASSE FAZ DE SEU MODO UNICO
     public abstract void sacar(double valor) throws IOException;
 
+    //DEPOSITAR É UNIVERSAL PARA TODAS AS CONTAS, ATE PORQUE SO TEM UMA FORMA DE DEPOSITAR
     public  void depositar(double valor) throws IOException {
         double saldo = getSaldo();
 

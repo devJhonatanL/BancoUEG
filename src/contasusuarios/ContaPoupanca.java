@@ -15,7 +15,7 @@ public class ContaPoupanca extends Conta {
     public  void sacar(double valor) throws IOException {
         double saldo = getSaldo();
 
-        if (valor > 0 && valor < saldo) {
+        if (valor > 0 && valor <= saldo) {
             saldo -= valor;
             setSaldo(saldo);
             Conta conta = EscritorLeitor.getContas().get(this.getNumeroConta());

@@ -22,10 +22,11 @@ public class ContaCorrente extends Conta {
         return chequeEspecial;
     }
 
+    //SACAR DA CONTA CORRENTE, ALEM DO SALDO ELA USA  UM CHEQUE ESPECIAL QUE SOMADO COM SALDO PERMITE O SAQUE
     @Override
     public  void sacar(double valor) throws IOException {
         double saldo = getSaldo();
-        if (valor > 0 && valor < (saldo + chequeEspecial)) {
+        if (valor > 0 && valor <= (saldo + chequeEspecial)) {
             saldo -= valor;
             setSaldo(saldo);
             Conta conta = EscritorLeitor.getContas().get(this.getNumeroConta());

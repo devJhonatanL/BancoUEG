@@ -11,6 +11,7 @@ public class Gerente extends usuariosistema.Usuario {
     public Gerente(String usuario, String senha) {
         super(usuario, senha,"gerente");
     }
+
     //CRIAR O USUARIO DO BANCARIO BANCARIO
     public void criarBancario() throws IOException {
 
@@ -48,6 +49,14 @@ public class Gerente extends usuariosistema.Usuario {
         System.out.println("\n==============================");
         contaCorrente = input.nextLine() + "C";
 
+        contasusuarios.Conta localizado = EscritorLeitor.getContas().get(contaCorrente);
+
+        if (localizado != null) {
+            System.out.println("Esse numero de conta ja pertence a um usuario. Verifique as contas ja atribuidas e tente novamente.");
+            return;
+        }
+
+
         System.out.println("\nQual vai ser o valor do saldo inicial:");
         saldo = input.nextDouble();
         input.nextLine();
@@ -72,11 +81,13 @@ public class Gerente extends usuariosistema.Usuario {
                 corrente.setChequeEspecial(valor);
                 EscritorLeitor.adicionarUsuario(correntista);
                 EscritorLeitor.adicionarContas(corrente);
+                System.out.println("Correntista cadastrado");
                 break;
             case 2:
                 correntista.setContaCorrente(contaCorrente);
                 EscritorLeitor.adicionarUsuario(correntista);
                 EscritorLeitor.adicionarContas(corrente);
+                System.out.println("Correntista cadastrado");
                 break;
             default:
                 System.out.println("\nEssa opção não existe, preste atenção no menu\n");
@@ -94,6 +105,14 @@ public class Gerente extends usuariosistema.Usuario {
         System.out.println("Digite um numero para a conta:");
         System.out.println("\n==============================");
         contaPoupanca = input.nextLine()+"P";
+
+        contasusuarios.Conta localizado = EscritorLeitor.getContas().get(contaPoupanca);
+
+        if (localizado != null) {
+            System.out.println("Esse numero de conta ja pertence a um usuario. Verifique as contas ja atribuidas e tente novamente.");
+            return;
+        }
+
         System.out.println("\nQual vai ser o valor do saldo inicial:\n");
         saldo = input.nextDouble();
         input.nextLine();
@@ -103,6 +122,7 @@ public class Gerente extends usuariosistema.Usuario {
         correntista.setContaPoupança(contaPoupanca);
         EscritorLeitor.adicionarUsuario(correntista);
         EscritorLeitor.adicionarContas(poupanca);
+        System.out.println("Correntista cadastrado");
 
     }
 
@@ -116,6 +136,14 @@ public class Gerente extends usuariosistema.Usuario {
         System.out.println("Digite um numero para a conta:");
         contaAdicional = input.nextLine()+"AD";
 
+        contasusuarios.Conta localizado = EscritorLeitor.getContas().get(contaAdicional);
+
+        if (localizado != null) {
+            System.out.println("Esse numero de conta ja pertence a um usuario. Verifique as contas ja atribuidas e tente novamente.");
+            return;
+        }
+
+
         System.out.println("Qual vai ser o valor do limite:");
         limite = input.nextDouble();
         input.nextLine();
@@ -125,6 +153,7 @@ public class Gerente extends usuariosistema.Usuario {
         adicional.setLimite(limite);
         EscritorLeitor.adicionarUsuario(correntista);
         EscritorLeitor.adicionarContas(adicional);
+        System.out.println("Correntista cadastrado");
     }
 
     //ALTERADOR DE LIMITE DA CONTA ADICIONAL
@@ -134,7 +163,7 @@ public class Gerente extends usuariosistema.Usuario {
         System.out.println("Digite o numero da conta");
         numeroConta = input.nextLine();
 
-        Conta contaEncontrada = EscritorLeitor.getContas().get(numeroConta);
+        Conta contaEncontrada = EscritorLeitor.getContas().get(numeroConta.toUpperCase());
         if (contaEncontrada == null) {
             System.out.println("Essa conta não foi encontrada");
             return;
@@ -200,8 +229,6 @@ public class Gerente extends usuariosistema.Usuario {
                 System.out.println("Essa opção não existe, preste atenção no menu");
 
         }
-        System.out.println(novoCorrentista);
-        System.out.println("Usuario correntista foi registrado  com sucesso");
     }
 
     //ADICIONA UMA NOVA CONTA AO CORRENTISTA - OBS: SO PODE ADICIONAR UMA CONTA DO TIPO ADICIONAL SE O CORRENTISTA TIVER UMA CONTA CORRENTE
@@ -211,29 +238,33 @@ public class Gerente extends usuariosistema.Usuario {
         System.out.println("Digite o nome do usuario que você deseja adicionar uma conta: ");
         String usuario = input.nextLine();
 
+        //Verifica se o usuario ja existe no sistema
         usuariosistema.Usuario usuarioEncontrado = EscritorLeitor.getUsuarios().get(usuario);
         if (usuarioEncontrado == null) {
             System.out.println("usuario não encontrado");
             return;
         }
+        //Verifica o tipo de acesso do usuario
         if (!usuarioEncontrado.getNivelacesso().equals("correntista")){
             System.out.println("Esse usuario não é um correntista");
             return;
         }
+        //Instancia o correntista
         Correntista correntista = (Correntista) usuarioEncontrado;
 
-        System.out.println("===========================");
+        System.out.println("\n===========================");
         System.out.println("+ Escolha o tipo de conta +");
         System.out.println("+ 1 - Corrente            +");
         System.out.println("+ 2 - Poupança            +");
-        System.out.println("+ 2 - Adicional           +");
-        System.out.println("===========================");
+        System.out.println("+ 3 - Adicional           +");
+        System.out.println("===========================\n");
 
         int opcao = input.nextInt();
         input.nextLine();
         switch (opcao) {
 
             case 1:
+                //VERIFICA SE TEM UMA CONTA CORRENTE E CRIA SE NÃO TIVER
                 if(correntista.getContaCorrente().equals("null")){
                     criarContaCorrente(correntista);
                 }else{
@@ -241,6 +272,7 @@ public class Gerente extends usuariosistema.Usuario {
                 }
                 break;
             case 2:
+                //VERIFICA SE TEM UMA CONTA POUPANCA E CRIA ELA SE NÃO TIVER
                 if(correntista.getContaPoupança().equals("null")){
                     criarContaPoupanca(correntista);
                 }else {
@@ -250,7 +282,7 @@ public class Gerente extends usuariosistema.Usuario {
             case 3:
                 //VERIFICA SE TEM UMA CONTA CORRENTE
                 if(!correntista.getContaCorrente().equals("null")) {
-                    //CRIA A CONTA ADICIONAL
+                    //CRIA A CONTA ADICIONAL E VERIFICA SE JA TEM UM CONTA ADD
                     if(correntista.getContaCorrenteAdicional().equals("null")){
                         criarContaAdicional(correntista);
                     }else {
@@ -263,38 +295,53 @@ public class Gerente extends usuariosistema.Usuario {
         }
     }
 
+    //lista os usuarios -tem que arrumar ainda
+    private  void listarUsuarios() throws IOException {
+        EscritorLeitor.getUsuarios();
+        System.out.println(EscritorLeitor.getUsuarios());
+    }
+
     // MENU DO GERENTE
     public  void menuGerente() throws IOException {
         Scanner input = new Scanner(System.in);
         int opcao;
 
+        do {
+            System.out.println("\n=================================");
+            System.out.println("+       Menu do gerente         +");
+            System.out.println("+ 1 - Criar usuario bancario    +");
+            System.out.println("+ 2 - Criar usuario correntista +");
+            System.out.println("+ 3 - Adicionar uma nova conta  +");
+            System.out.println("+ 4 - Configurar limte C.A      +");
+            System.out.println("+ 5 - Sair                      +");
+            System.out.println("+ 6 - Listar Usuarios           +");
+            System.out.println("=================================\n");
 
-        System.out.println("=================================");
-        System.out.println("+       Menu do gerente         +");
-        System.out.println("+ 1 - Criar usuario bancario    +");
-        System.out.println("+ 2 - Criar usuario correntista +");
-        System.out.println("+ 3 - Adicionar uma nova conta  +");
-        System.out.println("+ 4 - Configurar limte C.A      +");
-        System.out.println("+ 5 - Sair                      +");
-        System.out.println("=================================");
-
-        opcao = input.nextInt();
-        switch (opcao) {
-            case 1:
-                criarBancario();
-                break;
-            case 2:
-                criarCorrentista();
-                break;
-            case 3:
-                adicionarNovaConta();
-                break;
-            case 4:
-                alterarLimite();
-                break;
-            case 5:
-                System.out.println("Sistema foi fechado.");
-                break;
-        }
+            opcao = input.nextInt();
+            switch (opcao) {
+                case 1:
+                    criarBancario();
+                    break;
+                case 2:
+                    criarCorrentista();
+                    break;
+                case 3:
+                    adicionarNovaConta();
+                    break;
+                case 4:
+                    alterarLimite();
+                    break;
+                case 5:
+                    System.out.println("\nSistema foi fechado.");
+                    break;
+                case 6:
+                    listarUsuarios();
+                    break;
+                case 7:
+                    break;
+                default:
+                    System.out.println("\nEssa opção não existe, preste atenção no menu\n");
+            }
+        } while (opcao != 5);
     }
 }

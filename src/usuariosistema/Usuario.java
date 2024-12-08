@@ -4,7 +4,7 @@ public class Usuario {
     protected String nivelacesso;
     protected String senha;
     protected String usuario;
-    protected String numeroConta;
+    protected boolean sair = false;
 
 
     public Usuario(String usuario, String senha, String nivelacesso) {
@@ -21,4 +21,8 @@ public class Usuario {
     public String getUsuario() {
         return usuario;
     }
+    public boolean getSair() {
+        return sair;
+    }
+
 }

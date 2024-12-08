@@ -11,10 +11,12 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+
+        SistemaDeAutenticacao sistemaDeAutenticacao = new SistemaDeAutenticacao();
         EscritorLeitor.carregarUsuarios();
         EscritorLeitor.carregarContas();
 
-        SistemaDeAutenticacao sistemaDeAutenticacao = new SistemaDeAutenticacao();
+
 
         sistemaDeAutenticacao.login();
 
@@ -22,6 +24,7 @@ public class Main {
             case "admin":
                 AdminFull admFull2 = new AdminFull(SistemaDeAutenticacao.getUsuario(), SistemaDeAutenticacao.getSenha());
                 admFull2.menuAdm();
+                
                 break;
             case "gerente":
                 Gerente gerente = new Gerente(SistemaDeAutenticacao.getUsuario(), SistemaDeAutenticacao.getSenha());
@@ -34,11 +37,7 @@ public class Main {
             case "correntista":
                 Correntista correntista = new Correntista((SistemaDeAutenticacao.getUsuario()), SistemaDeAutenticacao.getSenha());
                 correntista.menuCorrentista();
-
-        }
-
-
-
+            }
 
     }
 }

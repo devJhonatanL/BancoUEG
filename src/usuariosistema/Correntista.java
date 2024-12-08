@@ -54,8 +54,7 @@ public class Correntista extends Usuario {
         String donoConta;
         double valor;
         int opcao;
-        boolean menuON = true;
-        boolean submenuOn = true;
+
 
 
         donoConta = SistemaDeAutenticacao.getUsuario();
@@ -77,75 +76,88 @@ public class Correntista extends Usuario {
                 case "poupanca":
                     System.out.println("Você optou por uma conta poupança /n");
 
+                        do {
+                            System.out.println("\n===========================");
+                            System.out.println("+         Operações       +");
+                            System.out.println("+ 1 - Saque               +");
+                            System.out.println("+ 2 - Deposito            +");
+                            System.out.println("+ 3 - Redimentos          +");
+                            System.out.println("+ 4 - Sair                +");
+                            System.out.println("+ 5 - Ver saldo           +");
+                            System.out.println("===========================\n");
 
-                        System.out.println("===========================");
-                        System.out.println("+         Operações       +");
-                        System.out.println("+ 1 - Saque               +");
-                        System.out.println("+ 2 - Deposito            +");
-                        System.out.println("+ 3 - Redimentos          +");
-                        System.out.println("+ 4 - Trocar conta        +");
-                        System.out.println("===========================");
-
-                        opcao = input.nextInt();
-                        ContaPoupanca contaPoupanca = (ContaPoupanca) contaEncontrada;
+                            opcao = input.nextInt();
+                            ContaPoupanca contaPoupanca = (ContaPoupanca) contaEncontrada;
 
 
-                        switch (opcao) {
-                            case 1:
-                                System.out.println("Digite um valor: ");
-                                valor = input.nextDouble();
-                                contaPoupanca.sacar(valor);
-                                break;
-                            case 2:
-                                System.out.println("Digite um valor: ");
-                                valor = input.nextDouble();
-                                contaPoupanca.depositar(valor);
-                                break;
-                            case 3:
-                                double saldo = contaEncontrada.getSaldo();
-                                System.out.println("Digite um tempo (meses) : ");
-                                int tempo = input.nextInt();
-                                contaPoupanca.calculoRedimentos(saldo, tempo);
-                                break;
-                            case 4:
-                                submenuOn = false;
-                                break;
-                        }
+                            switch (opcao) {
+                                case 1:
+                                    System.out.println("Digite um valor: ");
+                                    valor = input.nextDouble();
+                                    contaPoupanca.sacar(valor);
+                                    break;
+                                case 2:
+                                    System.out.println("Digite um valor: ");
+                                    valor = input.nextDouble();
+                                    contaPoupanca.depositar(valor);
+                                    break;
+                                case 3:
+                                    double saldo = contaEncontrada.getSaldo();
+                                    System.out.println("Digite um tempo (meses) : ");
+                                    int tempo = input.nextInt();
+                                    contaPoupanca.calculoRedimentos(saldo, tempo);
+                                    break;
+                                case 4:
+                                    System.out.println("Sistema Finalizado");
+                                    break;
+                                case 5:
+                                    System.out.println("Saldo da conta: " + contaPoupanca.getSaldo());
+                                    break;
+                            }
+                        }while (opcao != 4);
                         break;
 
                 case "adicional":
                     System.out.println("Você optou por uma adicional /n");
 
-                        System.out.println("===========================");
-                        System.out.println("+         Operações       +");
-                        System.out.println("+ 1 - Saque               +");
-                        System.out.println("+ 2 - Trocar conta        +");
-                        System.out.println("===========================");
+                        do {
+                            System.out.println("\n===========================");
+                            System.out.println("+         Operações       +");
+                            System.out.println("+ 1 - Saque               +");
+                            System.out.println("+ 2 - Sair                +");
+                            System.out.println("+ 3 - Ver limite          +");
+                            System.out.println("===========================\n");
 
-                        opcao = input.nextInt();
+                            opcao = input.nextInt();
 
-                        ContaAdicional contaAdicional = (ContaAdicional) contaEncontrada;
+                            ContaAdicional contaAdicional = (ContaAdicional) contaEncontrada;
 
-                        switch (opcao) {
-                            case 1:
-                                System.out.println("Digite um valor: ");
-                                valor = input.nextDouble();
-                                contaAdicional.sacar(valor);
-                                break;
-                        }
+                            switch (opcao) {
+                                case 1:
+                                    System.out.println("Digite um valor: ");
+                                    valor = input.nextDouble();
+                                    contaAdicional.sacar(valor);
+                                    break;
+                                case 2:
+                                    System.out.println("Sistema Finalizado");
+                                    break;
+                                case 3:
+                                    System.out.println("Limite da conta: " +contaAdicional.getLimite());
+                            }
+                        }while (opcao != 2);
                         break;
-
                 case "corrente": {
                     System.out.println("Você optou por uma corrente");
 
-
-                        System.out.println("===========================");
+                    do {
+                        System.out.println("\n===========================");
                         System.out.println("+         Operações       +");
                         System.out.println("+ 1 - Saque               +");
                         System.out.println("+ 2 - Deposito            +");
                         System.out.println("+ 3 - Trasnferencia       +");
-                        System.out.println("+ 4 - Trocar conta        +");
-                        System.out.println("===========================");
+                        System.out.println("+ 4 - Sair                +");
+                        System.out.println("+ 5 - Ver saldo           +");
+                        System.out.println("===========================\n");
 
                         opcao = input.nextInt();
                         ContaCorrente contaCorrente = (ContaCorrente) contaEncontrada;
@@ -188,9 +200,16 @@ public class Correntista extends Usuario {
                                     conta.depositar(valor);
                                 }
                                 break;
+                            case 4:
+                                System.out.println("Sistema Finalizado");
+                                break;
+                            case 5:
+                                System.out.println("Saldo da conta: " +contaCorrente.getSaldo());
+                                break;
                         }
 
 
+                    } while (opcao != 4);
                 }
             }
 

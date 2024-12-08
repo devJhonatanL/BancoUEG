@@ -1,4 +1,8 @@
+3331.0,papis,33333P,1234,poupanca
 -77.0,luis,22C,1234,corrente,77.0
-80.0,luis,22222P,1234,poupanca
+9999.0,teste1123,33C,1234,corrente,0.0
+566.0,kaiky,44C,1234,corrente,0.0
+60.0,luis,22222P,1234,poupanca
 0.0,luis,7973AD,1234,adicional,700.0
-100600.0,papis,333C,1234,corrente,0.0
+100000.0,papis,333C,1234,corrente,0.0
+0.0,papis,33333333AD,1234,adicional,190.0

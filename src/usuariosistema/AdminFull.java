@@ -34,20 +34,26 @@ public class AdminFull extends Usuario {
         Scanner input = new Scanner(System.in);
         int opcao;
 
-        System.out.println("===========================");
-        System.out.println("+        MENU ADM         +");
-        System.out.println("+--------------------------");
-        System.out.println("+ 1 - Criar gerente       +");
-        System.out.println("===========================");
-        opcao = input.nextInt();
-        switch (opcao) {
-            case 1:
-                criarGerente();
-                System.out.println("Gerente criado com sucesso!");
-                break;
-            default:
-                System.out.println("Essa opção não existe, preste atenção no menu");
+        do {
+            System.out.println("\n===========================");
+            System.out.println("+        MENU ADM         +");
+            System.out.println("+--------------------------");
+            System.out.println("+ 1 - Criar gerente       +");
+            System.out.println("+ 2 - Sair                +");
+            System.out.println("===========================\n");
+            opcao = input.nextInt();
+            switch (opcao) {
+                case 1:
+                    criarGerente();
+                    System.out.println("Gerente criado com sucesso!");
+                    break;
+                case 2:
+                    System.out.println("Sistema finalizado com sucesso!");
+                    break;
+                default:
+                    System.out.println("Essa opção não existe, preste atenção no menu");
 
-        }
+            }
+        } while (opcao != 2);
     }
 }

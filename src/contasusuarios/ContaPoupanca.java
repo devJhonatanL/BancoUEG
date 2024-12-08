@@ -11,6 +11,7 @@ public class ContaPoupanca extends Conta {
         super(saldo, titular, numeroConta, senha, "poupanca");
     }
 
+    //SACAR DA CONTA CORRENTE, ALEM DO SALDO ELA USA  UM CHEQUE ESPECIAL QUE SOMADO COM SALDO PERMITE O SAQUE
     @Override
     public  void sacar(double valor) throws IOException {
         double saldo = getSaldo();
@@ -26,7 +27,7 @@ public class ContaPoupanca extends Conta {
         }
 
     }
-
+    //CALCULAR REDIMENTOS
     public double calculoRedimentos(double saldo, int tempo) {
 
         rendimentos = getSaldo() * Math.pow(1 + (taxaDeRedimento / 100), tempo);

@@ -182,7 +182,7 @@ public class Correntista extends Usuario {
 
                                 System.out.println("Informe o numero da conta a receber");
                                 String contaRecebe = input.nextLine();
-                                Conta contaRecEncontrada = EscritorLeitor.getContas().get(contaRecebe);
+                                Conta contaRecEncontrada = EscritorLeitor.getContas().get(contaRecebe.toUpperCase());
                                 if (contaRecEncontrada == null) {
                                     System.out.println("Conta inexistente");
                                     return;

@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class ContaPoupanca extends Conta {
     private double rendimentos;
-    double taxaDeRedimento = 3.8;
+    private double taxaDeRedimento = 3.8;
     public ContaPoupanca(double saldo, String titular, String numeroConta, String senha) {
         super(saldo, titular, numeroConta, senha, "poupanca");
     }

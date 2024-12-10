@@ -44,6 +44,12 @@ public  abstract class Conta {
         this.saldo = saldo;
     }
 
+    @Override
+    public String toString() {
+        return " " + "usuario "+ " " + this.titular+ ", "+"tipo de conta= " + this.getTipoConta() + "]\n";
+    }
+
+
     //SACAR É ABSTRATO E CADA CLASSE FAZ DE SEU MODO UNICO
     public abstract void sacar(double valor) throws IOException;
 

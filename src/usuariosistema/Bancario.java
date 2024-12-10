@@ -140,6 +140,11 @@ public class Bancario extends Usuario{
                 contaPoupanca.calculoRedimentos(saldo, tempo);
         }
 
+        public void listarContas() throws IOException {
+            EscritorLeitor.getContas();
+            System.out.println(EscritorLeitor.getContas());
+        }
+
         //MENU DO BANCARIO
          public  void menuBancario() throws IOException {
              Scanner input = new Scanner(System.in);
@@ -170,6 +175,7 @@ public class Bancario extends Usuario{
                          System.out.println("Sistema finalizado com sucesso");
                          break;
                      case 5:
+                         listarContas();
                          break;
                      case 4:
                          redimentos();

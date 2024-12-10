@@ -337,8 +337,6 @@ public class Gerente extends usuariosistema.Usuario {
                 case 6:
                     listarUsuarios();
                     break;
-                case 7:
-                    break;
                 default:
                     System.out.println("\nEssa opção não existe, preste atenção no menu\n");
             }

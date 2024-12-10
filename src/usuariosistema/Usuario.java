@@ -4,7 +4,6 @@ public class Usuario {
     protected String nivelacesso;
     protected String senha;
     protected String usuario;
-    protected boolean sair = false;
 
 
     public Usuario(String usuario, String senha, String nivelacesso) {
@@ -21,8 +20,8 @@ public class Usuario {
     public String getUsuario() {
         return usuario;
     }
-    public boolean getSair() {
-        return sair;
+    @Override
+    public String toString() {
+        return " " + "usuario, "+"nivel de acesso= " + this.nivelacesso + "]\n";
     }
-
 }

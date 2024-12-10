@@ -15,18 +15,18 @@ public class EscritorLeitor {
     private static HashMap<String, Conta> contas = new HashMap<>();
     private static final String arquivoContas = "contas.txt";
 
-    //RETORNA  A LISTA
+    //RETORNA  O HASHMAP
     public static HashMap<String, Usuario> getUsuarios() {
         return usuarios;
     }
     public static HashMap<String, Conta> getContas() {return contas;}
 
-    //SALVA O USUARIO NA LISTA E PUXA O METODO QUE ESCREVE ELE NO ARQUIVO DE TEXTO
+    //SALVA O USUARIO NO HASMAP E PUXA O METODO QUE ESCREVE ELE NO ARQUIVO DE TEXTO
     public static void adicionarUsuario(Usuario usuario) throws IOException {
         usuarios.put(usuario.getUsuario(),usuario);
         registrarUsuario(usuarios);
     }
-
+    //SALVA A CONTA NO HASMAP E PUXA O METODO QUE ESCREVE ELE NO ARQUIVO DE TEXTO
     public static void adicionarContas(Conta conta) throws IOException {
         contas.put(conta.getNumeroConta(), conta);
         registrarContas(contas);
@@ -56,7 +56,7 @@ public class EscritorLeitor {
             System.out.println(" *Erro ao registrar as informações. Tente novamente!* ");
         }
     }
-
+    // REGISTRA A CONTA NO ARQUIVO DE TEXTO
     private static void registrarContas(Map<String, Conta> contas) {
 
 
@@ -87,7 +87,7 @@ public class EscritorLeitor {
     }
 
 
-    //CARREGA OS USUARIOS NO ARQUIVO DE TEXTO PARA A LISTA
+    //CARREGA OS USUARIOS NO ARQUIVO DE TEXTO PARA O HASHMAP
     public static void carregarUsuarios() throws IOException {
         try (BufferedReader leitor = new BufferedReader(new FileReader(arquivo))) {
 
@@ -131,7 +131,7 @@ public class EscritorLeitor {
         }
         System.out.println("Usuários carregados com sucesso.");
     }
-
+    //CARREGA AS CONTAS NO ARQUIVO DE TEXTO PARA O HASHMAP
     public static void carregarContas() throws IOException {
         try (BufferedReader leitor = new BufferedReader(new FileReader(arquivoContas))) {
 

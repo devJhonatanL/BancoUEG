@@ -140,6 +140,7 @@ public class Bancario extends Usuario{
                 contaPoupanca.calculoRedimentos(saldo, tempo);
         }
 
+        //LISTAR CONTAS
         public void listarContas() throws IOException {
             EscritorLeitor.getContas();
             System.out.println(EscritorLeitor.getContas());

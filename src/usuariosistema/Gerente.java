@@ -295,7 +295,7 @@ public class Gerente extends usuariosistema.Usuario {
         }
     }
 
-    //lista os usuarios -tem que arrumar ainda
+    //lista os usuarios
     private  void listarUsuarios() throws IOException {
         EscritorLeitor.getUsuarios();
         System.out.println(EscritorLeitor.getUsuarios());

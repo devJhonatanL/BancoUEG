@@ -20,6 +20,8 @@ public class Usuario {
     public String getUsuario() {
         return usuario;
     }
+
+    //FORMATAÇÃO PARA MOSTRAR OS USUARIOS
     @Override
     public String toString() {
         return " " + "usuario, "+"nivel de acesso= " + this.nivelacesso + "]\n";
